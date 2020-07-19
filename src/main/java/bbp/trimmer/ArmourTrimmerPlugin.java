@@ -74,7 +74,7 @@ public class ArmourTrimmerPlugin extends Plugin
 	{
 		if (gameStateChanged.getGameState() == GameState.LOGGED_IN && config.sendMessage())
 		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Armour Trimmer says: Trimming all armour 50k! meet in edge.", null);
+			client.addChatMessage(ChatMessageType.PUBLICCHAT, "xXArmour Trimmer 420Xx", "Trimming all armour 50k! Meet in edge.", null);
 		}
 	}
 

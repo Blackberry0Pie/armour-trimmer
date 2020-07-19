@@ -39,85 +39,92 @@ import java.util.Map;
 public class ArmourTrimmerOverlay extends WidgetItemOverlay
 {
 	private final ItemManager itemManager;
-	private static final Map<Integer, Integer> ARMOUR_REMAP = new ImmutableMap.Builder<Integer, Integer>().
-			put(ItemID.BRONZE_FULL_HELM,ItemID.BRONZE_FULL_HELM_G).
-			put(ItemID.BRONZE_PLATEBODY,ItemID.BRONZE_PLATEBODY_G).
-			put(ItemID.BRONZE_PLATELEGS,ItemID.BRONZE_PLATELEGS_G).
-			put(ItemID.BRONZE_PLATESKIRT,ItemID.BRONZE_PLATESKIRT_G).
-			put(ItemID.BRONZE_KITESHIELD,ItemID.BRONZE_KITESHIELD_G).
+	private final ArmourTrimmerConfig config;
+	private static final Map<Integer, Integer[]> ARMOUR_REMAP = new ImmutableMap.Builder<Integer, Integer[]>().
+			put(ItemID.BRONZE_FULL_HELM, new Integer[] {ItemID.BRONZE_FULL_HELM_T, ItemID.BRONZE_FULL_HELM_G}).
+			put(ItemID.BRONZE_PLATEBODY, new Integer[] {ItemID.BRONZE_PLATEBODY_T, ItemID.BRONZE_PLATEBODY_G}).
+			put(ItemID.BRONZE_PLATELEGS, new Integer[] {ItemID.BRONZE_PLATELEGS_T, ItemID.BRONZE_PLATELEGS_G}).
+			put(ItemID.BRONZE_PLATESKIRT, new Integer[] {ItemID.BRONZE_PLATESKIRT_T, ItemID.BRONZE_PLATESKIRT_G}).
+			put(ItemID.BRONZE_KITESHIELD, new Integer[] {ItemID.BRONZE_KITESHIELD_T, ItemID.BRONZE_KITESHIELD_G}).
 
-			put(ItemID.IRON_FULL_HELM,ItemID.IRON_FULL_HELM_G).
-			put(ItemID.IRON_PLATEBODY,ItemID.IRON_PLATEBODY_G).
-			put(ItemID.IRON_PLATELEGS,ItemID.IRON_PLATELEGS_G).
-			put(ItemID.IRON_PLATESKIRT,ItemID.IRON_PLATESKIRT_G).
-			put(ItemID.IRON_KITESHIELD,ItemID.IRON_KITESHIELD_G).
+			put(ItemID.IRON_FULL_HELM, new Integer[] {ItemID.IRON_FULL_HELM_T, ItemID.IRON_FULL_HELM_G}).
+			put(ItemID.IRON_PLATEBODY, new Integer[] {ItemID.IRON_PLATEBODY_T, ItemID.IRON_PLATEBODY_G}).
+			put(ItemID.IRON_PLATELEGS, new Integer[] {ItemID.IRON_PLATELEGS_T, ItemID.IRON_PLATELEGS_G}).
+			put(ItemID.IRON_PLATESKIRT, new Integer[] {ItemID.IRON_PLATESKIRT_T, ItemID.IRON_PLATESKIRT_G}).
+			put(ItemID.IRON_KITESHIELD, new Integer[] {ItemID.IRON_KITESHIELD_T, ItemID.IRON_KITESHIELD_G}).
 
-			put(ItemID.STEEL_FULL_HELM,ItemID.STEEL_FULL_HELM_G).
-			put(ItemID.STEEL_PLATEBODY,ItemID.STEEL_PLATEBODY_G).
-			put(ItemID.STEEL_PLATELEGS,ItemID.STEEL_PLATELEGS_G).
-			put(ItemID.STEEL_PLATESKIRT,ItemID.STEEL_PLATESKIRT_G).
-			put(ItemID.STEEL_KITESHIELD,ItemID.STEEL_KITESHIELD_G).
+			put(ItemID.STEEL_FULL_HELM, new Integer[] {ItemID.STEEL_FULL_HELM_T, ItemID.STEEL_FULL_HELM_G}).
+			put(ItemID.STEEL_PLATEBODY, new Integer[] {ItemID.STEEL_PLATEBODY_T, ItemID.STEEL_PLATEBODY_G}).
+			put(ItemID.STEEL_PLATELEGS, new Integer[] {ItemID.STEEL_PLATELEGS_T, ItemID.STEEL_PLATELEGS_G}).
+			put(ItemID.STEEL_PLATESKIRT, new Integer[] {ItemID.STEEL_PLATESKIRT_T, ItemID.STEEL_PLATESKIRT_G}).
+			put(ItemID.STEEL_KITESHIELD, new Integer[] {ItemID.STEEL_KITESHIELD_T, ItemID.STEEL_KITESHIELD_G}).
 
-			put(ItemID.BLACK_FULL_HELM,ItemID.BLACK_FULL_HELM_G).
-			put(ItemID.BLACK_PLATEBODY,ItemID.BLACK_PLATEBODY_G).
-			put(ItemID.BLACK_PLATELEGS,ItemID.BLACK_PLATELEGS_G).
-			put(ItemID.BLACK_PLATESKIRT,ItemID.BLACK_PLATESKIRT_G).
-			put(ItemID.BLACK_KITESHIELD,ItemID.BLACK_KITESHIELD_G).
+			put(ItemID.BLACK_FULL_HELM, new Integer[] {ItemID.BLACK_FULL_HELM_T, ItemID.BLACK_FULL_HELM_G}).
+			put(ItemID.BLACK_PLATEBODY, new Integer[] {ItemID.BLACK_PLATEBODY_T, ItemID.BLACK_PLATEBODY_G}).
+			put(ItemID.BLACK_PLATELEGS, new Integer[] {ItemID.BLACK_PLATELEGS_T, ItemID.BLACK_PLATELEGS_G}).
+			put(ItemID.BLACK_PLATESKIRT, new Integer[] {ItemID.BLACK_PLATESKIRT_T, ItemID.BLACK_PLATESKIRT_G}).
+			put(ItemID.BLACK_KITESHIELD, new Integer[] {ItemID.BLACK_KITESHIELD_T, ItemID.BLACK_KITESHIELD_G}).
 
-			put(ItemID.MITHRIL_FULL_HELM,ItemID.MITHRIL_FULL_HELM_G).
-			put(ItemID.MITHRIL_PLATEBODY,ItemID.MITHRIL_PLATEBODY_G).
-			put(ItemID.MITHRIL_PLATELEGS,ItemID.MITHRIL_PLATELEGS_G).
-			put(ItemID.MITHRIL_PLATESKIRT,ItemID.MITHRIL_PLATESKIRT_G).
-			put(ItemID.MITHRIL_KITESHIELD,ItemID.MITHRIL_KITESHIELD_G).
+			put(ItemID.MITHRIL_FULL_HELM, new Integer[] {ItemID.MITHRIL_FULL_HELM_T, ItemID.MITHRIL_FULL_HELM_G}).
+			put(ItemID.MITHRIL_PLATEBODY, new Integer[] {ItemID.MITHRIL_PLATEBODY_T, ItemID.MITHRIL_PLATEBODY_G}).
+			put(ItemID.MITHRIL_PLATELEGS, new Integer[] {ItemID.MITHRIL_PLATELEGS_T, ItemID.MITHRIL_PLATELEGS_G}).
+			put(ItemID.MITHRIL_PLATESKIRT, new Integer[] {ItemID.MITHRIL_PLATESKIRT_T, ItemID.MITHRIL_PLATESKIRT_G}).
+			put(ItemID.MITHRIL_KITESHIELD, new Integer[] {ItemID.MITHRIL_KITESHIELD_T, ItemID.MITHRIL_KITESHIELD_G}).
 
-			put(ItemID.ADAMANT_FULL_HELM,ItemID.ADAMANT_FULL_HELM_G).
-			put(ItemID.ADAMANT_PLATEBODY,ItemID.ADAMANT_PLATEBODY_G).
-			put(ItemID.ADAMANT_PLATELEGS,ItemID.ADAMANT_PLATELEGS_G).
-			put(ItemID.ADAMANT_PLATESKIRT,ItemID.ADAMANT_PLATESKIRT_G).
-			put(ItemID.ADAMANT_KITESHIELD,ItemID.ADAMANT_KITESHIELD_G).
+			put(ItemID.ADAMANT_FULL_HELM, new Integer[] {ItemID.ADAMANT_FULL_HELM_T, ItemID.ADAMANT_FULL_HELM_G}).
+			put(ItemID.ADAMANT_PLATEBODY, new Integer[] {ItemID.ADAMANT_PLATEBODY_T, ItemID.ADAMANT_PLATEBODY_G}).
+			put(ItemID.ADAMANT_PLATELEGS, new Integer[] {ItemID.ADAMANT_PLATELEGS_T, ItemID.ADAMANT_PLATELEGS_G}).
+			put(ItemID.ADAMANT_PLATESKIRT, new Integer[] {ItemID.ADAMANT_PLATESKIRT_T, ItemID.ADAMANT_PLATESKIRT_G}).
+			put(ItemID.ADAMANT_KITESHIELD, new Integer[] {ItemID.ADAMANT_KITESHIELD_T, ItemID.ADAMANT_KITESHIELD_G}).
 
-			put(ItemID.RUNE_FULL_HELM,ItemID.RUNE_FULL_HELM_G).
-			put(ItemID.RUNE_PLATEBODY,ItemID.RUNE_PLATEBODY_G).
-			put(ItemID.RUNE_PLATELEGS,ItemID.RUNE_PLATELEGS_G).
-			put(ItemID.RUNE_PLATESKIRT,ItemID.RUNE_PLATESKIRT_G).
-			put(ItemID.RUNE_KITESHIELD,ItemID.RUNE_KITESHIELD_G).
+			put(ItemID.RUNE_FULL_HELM, new Integer[] {ItemID.RUNE_FULL_HELM_T, ItemID.RUNE_FULL_HELM_G}).
+			put(ItemID.RUNE_PLATEBODY, new Integer[] {ItemID.RUNE_PLATEBODY_T, ItemID.RUNE_PLATEBODY_G}).
+			put(ItemID.RUNE_PLATELEGS, new Integer[] {ItemID.RUNE_PLATELEGS_T, ItemID.RUNE_PLATELEGS_G}).
+			put(ItemID.RUNE_PLATESKIRT, new Integer[] {ItemID.RUNE_PLATESKIRT_T, ItemID.RUNE_PLATESKIRT_G}).
+			put(ItemID.RUNE_KITESHIELD, new Integer[] {ItemID.RUNE_KITESHIELD_T, ItemID.RUNE_KITESHIELD_G}).
 
-			put(ItemID.BLUE_WIZARD_HAT,ItemID.BLUE_WIZARD_HAT_G).
-			put(ItemID.BLUE_WIZARD_ROBE,ItemID.BLUE_WIZARD_ROBE_G).
-			put(ItemID.BLUE_SKIRT,ItemID.BLUE_SKIRT_G).
+			put(ItemID.BLUE_WIZARD_HAT, new Integer[] {ItemID.BLUE_WIZARD_HAT_T, ItemID.BLUE_WIZARD_HAT_G}).
+			put(ItemID.BLUE_WIZARD_ROBE, new Integer[] {ItemID.BLUE_WIZARD_ROBE_T, ItemID.BLUE_WIZARD_ROBE_G}).
+			put(ItemID.BLUE_SKIRT, new Integer[] {ItemID.BLUE_SKIRT_T, ItemID.BLUE_SKIRT_G}).
 
-			put(ItemID.WIZARD_HAT,ItemID.BLACK_WIZARD_HAT_G).
-			put(ItemID.BLACK_ROBE,ItemID.BLACK_WIZARD_ROBE_G).
-			put(ItemID.BLACK_SKIRT,ItemID.BLACK_SKIRT_G).
+			put(ItemID.WIZARD_HAT, new Integer[] {ItemID.BLACK_WIZARD_HAT_T, ItemID.BLACK_WIZARD_HAT_G}).
+			put(ItemID.BLACK_ROBE, new Integer[] {ItemID.BLACK_WIZARD_ROBE_T, ItemID.BLACK_WIZARD_ROBE_G}).
+			put(ItemID.BLACK_SKIRT, new Integer[] {ItemID.BLACK_SKIRT_T, ItemID.BLACK_SKIRT_G}).
 
-			put(ItemID.LEATHER_BODY,ItemID.LEATHER_BODY_G).
-			put(ItemID.LEATHER_CHAPS,ItemID.LEATHER_CHAPS_G).
+			put(ItemID.LEATHER_BODY, new Integer[] {null, ItemID.LEATHER_BODY_G}).
+			put(ItemID.LEATHER_CHAPS, new Integer[] {null, ItemID.LEATHER_CHAPS_G}).
 
-			put(ItemID.STUDDED_BODY,ItemID.STUDDED_BODY_G).
-			put(ItemID.STUDDED_CHAPS,ItemID.STUDDED_CHAPS_G).
+			put(ItemID.STUDDED_BODY, new Integer[] {ItemID.STUDDED_BODY_T, ItemID.STUDDED_BODY_G}).
+			put(ItemID.STUDDED_CHAPS, new Integer[] {ItemID.STUDDED_CHAPS_T, ItemID.STUDDED_CHAPS_G}).
 
-			put(ItemID.GREEN_DHIDE_BODY,ItemID.GREEN_DHIDE_BODY_G).
-			put(ItemID.GREEN_DHIDE_CHAPS,ItemID.GREEN_DHIDE_CHAPS_G).
+			put(ItemID.GREEN_DHIDE_BODY, new Integer[] {ItemID.GREEN_DHIDE_BODY_T, ItemID.GREEN_DHIDE_BODY_G}).
+			put(ItemID.GREEN_DHIDE_CHAPS, new Integer[] {ItemID.GREEN_DHIDE_CHAPS_T, ItemID.GREEN_DHIDE_CHAPS_G}).
 
-			put(ItemID.BLUE_DHIDE_BODY,ItemID.BLUE_DHIDE_BODY_G).
-			put(ItemID.BLUE_DHIDE_CHAPS,ItemID.BLUE_DHIDE_CHAPS_G).
+			put(ItemID.BLUE_DHIDE_BODY, new Integer[] {ItemID.BLUE_DHIDE_BODY_T, ItemID.BLUE_DHIDE_BODY_G}).
+			put(ItemID.BLUE_DHIDE_CHAPS, new Integer[] {ItemID.BLUE_DHIDE_CHAPS_T, ItemID.BLUE_DHIDE_CHAPS_G}).
 
-			put(ItemID.RED_DHIDE_BODY,ItemID.RED_DHIDE_BODY_G).
-			put(ItemID.RED_DHIDE_CHAPS,ItemID.RED_DHIDE_CHAPS_G).
+			put(ItemID.RED_DHIDE_BODY, new Integer[] {ItemID.RED_DHIDE_BODY_T, ItemID.RED_DHIDE_BODY_G}).
+			put(ItemID.RED_DHIDE_CHAPS, new Integer[] {ItemID.RED_DHIDE_CHAPS_T, ItemID.RED_DHIDE_CHAPS_G}).
 
-			put(ItemID.BLACK_DHIDE_BODY,ItemID.BLACK_DHIDE_BODY_G).
-			put(ItemID.BLACK_DHIDE_CHAPS,ItemID.BLACK_DHIDE_CHAPS_G).
+			put(ItemID.BLACK_DHIDE_BODY, new Integer[] {ItemID.BLACK_DHIDE_BODY_T, ItemID.BLACK_DHIDE_BODY_G}).
+			put(ItemID.BLACK_DHIDE_CHAPS, new Integer[] {ItemID.BLACK_DHIDE_CHAPS_T, ItemID.BLACK_DHIDE_CHAPS_G}).
 
-			put(ItemID.CLIMBING_BOOTS,ItemID.CLIMBING_BOOTS_G).
+			put(ItemID.MONKS_ROBE_TOP, new Integer[] {ItemID.MONKS_ROBE_TOP_T, ItemID.MONKS_ROBE_TOP_G}).
+			put(ItemID.MONKS_ROBE, new Integer[] {ItemID.MONKS_ROBE_T, ItemID.MONKS_ROBE_G}).
 
-			put(ItemID.WOODEN_SHIELD,ItemID.WOODEN_SHIELD_G).
+			put(ItemID.CLIMBING_BOOTS, new Integer[] {null, ItemID.CLIMBING_BOOTS_G}).
+
+			put(ItemID.WOODEN_SHIELD, new Integer[] {null, ItemID.WOODEN_SHIELD_G}).
+
+			put(ItemID.FIRE_CAPE, new Integer[] {null, ItemID.INFERNAL_CAPE}).
 
 			build();
 
 	@Inject
-	private ArmourTrimmerOverlay(ItemManager itemManager)
+	private ArmourTrimmerOverlay(ItemManager itemManager, ArmourTrimmerConfig config)
 	{
 		this.itemManager = itemManager;
+		this.config = config;
 		showOnEquipment();
 		showOnInventory();
 		showOnBank();
@@ -128,7 +135,7 @@ public class ArmourTrimmerOverlay extends WidgetItemOverlay
 	{
 		if (ARMOUR_REMAP.containsKey(itemId)) {
 			Rectangle bounds = itemWidget.getCanvasBounds();
-			final BufferedImage replacement = itemManager.getImage(ARMOUR_REMAP.get(itemId));
+			final BufferedImage replacement = itemManager.getImage(ARMOUR_REMAP.get(itemId)[config.trimGold() || ARMOUR_REMAP.get(itemId)[0] == null ? 1 : 0]);
 			graphics.drawImage(replacement, (int) bounds.getX(), (int) bounds.getY(), null);
 		}
 	}

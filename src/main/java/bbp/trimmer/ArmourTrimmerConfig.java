@@ -32,11 +32,23 @@ import net.runelite.client.config.ConfigItem;
 public interface ArmourTrimmerConfig extends Config
 {
 	@ConfigItem(
+		position = 0,
 		keyName = "sendMessage",
 		name = "Welcome message",
 		description = "Send the user a message when they login"
 	)
 	default boolean sendMessage()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		position = 1,
+		keyName = "trimGold",
+		name = "Gold Trim",
+		description = "Trims in gold"
+	)
+	default boolean trimGold()
 	{
 		return true;
 	}
