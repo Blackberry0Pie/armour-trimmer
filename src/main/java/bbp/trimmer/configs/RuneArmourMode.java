@@ -22,63 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package bbp.trimmer;
+package bbp.trimmer.configs;
 
-import com.google.inject.Provides;
-import javax.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.client.config.ConfigManager;
-import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.ui.overlay.OverlayManager;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@Slf4j
-@PluginDescriptor(
-	name = "Armour Trimmer"
-)
-public class ArmourTrimmerPlugin extends Plugin
+@Getter
+@RequiredArgsConstructor
+public enum RuneArmourMode
 {
-	@Inject
-	private Client client;
+	TRIMMED("Trimmed"),
+	GOLD_TRIMMED("Gold Trimmed"),
+	GILDED("Gilded"),
+	ANCIENT("Ancient"),
+	ARMADYL("Armadyl"),
+	BANDOS("Bandos"),
+	GUTHIX("Guthix"),
+	SARADOMIN("Saradomin"),
+	ZAMORAK("Zamorak"),
+	NONE("None");
 
-	@Inject
-	private ArmourTrimmerConfig config;
-
-	@Inject
-	private OverlayManager overlayManager;
-
-	@Inject
-	private ArmourTrimmerOverlay overlay;
-
-	@Override
-	protected void startUp() throws Exception
-	{
-		overlayManager.add(overlay);
-	}
+	private final String option;
 
 	@Override
-	protected void shutDown() throws Exception
+	public String toString()
 	{
-		overlayManager.remove(overlay);
-	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
-	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN && config.sendMessage())
-		{
-			client.addChatMessage(ChatMessageType.PUBLICCHAT, "xXArmour Trimmer 420Xx", "Trimming all armour 50k! Meet in edge.", null);
-		}
-	}
-
-	@Provides
-	ArmourTrimmerConfig provideConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(ArmourTrimmerConfig.class);
+		return option;
 	}
 }

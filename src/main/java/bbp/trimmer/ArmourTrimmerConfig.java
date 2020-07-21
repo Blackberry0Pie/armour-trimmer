@@ -24,6 +24,12 @@
  */
 package bbp.trimmer;
 
+import bbp.trimmer.configs.AbyssalWhipMode;
+import bbp.trimmer.configs.DarkBowMode;
+import bbp.trimmer.configs.GracefulMode;
+import bbp.trimmer.configs.GraniteMaulMode;
+import bbp.trimmer.configs.RuneArmourMode;
+import bbp.trimmer.configs.RuneScimitarMode;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
@@ -32,7 +38,7 @@ import net.runelite.client.config.ConfigItem;
 public interface ArmourTrimmerConfig extends Config
 {
 	@ConfigItem(
-		position = 0,
+		position = -3,
 		keyName = "sendMessage",
 		name = "Welcome message",
 		description = "Send the user a message when they login"
@@ -43,13 +49,73 @@ public interface ArmourTrimmerConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 1,
+		position = -2,
 		keyName = "trimGold",
 		name = "Gold Trim",
-		description = "Trims in gold"
+		description = "Trims items in gold trim instead of normal trim"
 	)
 	default boolean trimGold()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+		keyName = "gracefulMode",
+		name = "Graceful Mode",
+		description = "Which graceful type is used"
+	)
+	default GracefulMode gracefulMode()
+	{
+		return GracefulMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "darkBowMode",
+		name = "Dark Bow Mode",
+		description = "Which dark bow type is used"
+	)
+	default DarkBowMode darkBowMode()
+	{
+		return DarkBowMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "abyssalWhipMode",
+		name = "Abyssal Whip Mode",
+		description = "Which abyssal whip type is used"
+	)
+	default AbyssalWhipMode abyssalWhipMode()
+	{
+		return AbyssalWhipMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "runeArmourMode",
+		name = "Rune Armour Mode",
+		description = "Which rune armour type is used"
+	)
+	default RuneArmourMode runeArmourMode()
+	{
+		return RuneArmourMode.NONE;
+	}
+
+	@ConfigItem(
+			keyName = "runeScimitarMode",
+			name = "Rune Scimitar Mode",
+			description = "Which rune scimitar type is used"
+	)
+	default RuneScimitarMode runeScimitarMode()
+	{
+		return RuneScimitarMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "graniteMaulMode",
+		name = "Granite Maul Mode",
+		description = "Which granite maul type is used"
+	)
+	default GraniteMaulMode graniteMaulMode()
+	{
+		return GraniteMaulMode.NONE;
 	}
 }
