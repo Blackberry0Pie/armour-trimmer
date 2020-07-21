@@ -39,7 +39,8 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Armour Trimmer"
+	name = "Armour Trimmer",
+	description = "Overlays item icons with trimmed versions"
 )
 public class ArmourTrimmerPlugin extends Plugin
 {
